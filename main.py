@@ -10,6 +10,9 @@ from constants import *
 def main():
     pygame.init()
 
+    clock = pygame.time.Clock()
+    dt = 0
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     while True:
@@ -18,6 +21,9 @@ def main():
                 return
         pygame.Surface.fill(screen, "black")
         pygame.display.flip()
+
+        # pause the game for 1/60th of a second
+        dt = clock.tick(60) / 1000
 
     # print("Starting asteroids!")
     # print(f"Screen width: {SCREEN_WIDTH}")
