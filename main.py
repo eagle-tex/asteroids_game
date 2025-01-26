@@ -5,6 +5,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import Player
 
 
 def main():
@@ -15,11 +16,14 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    player = Player(int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2))
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         pygame.Surface.fill(screen, "black")
+        player.draw(screen)
         pygame.display.flip()
 
         # pause the game for 1/60th of a second
