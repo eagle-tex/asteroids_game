@@ -26,6 +26,8 @@ def main():
         player.draw(screen)
         pygame.display.flip()
 
+        player.update(dt)
+
         # pause the game for 1/60th of a second
         dt = clock.tick(60) / 1000
 
