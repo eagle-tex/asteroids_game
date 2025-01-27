@@ -1,11 +1,16 @@
 import pygame
+from pygame.sprite import Sprite, Group
 from circleshape import CircleShape
 from constants import PLAYER_RADIUS, PLAYER_SPEED, PLAYER_TURN_SPEED
 
 
-class Player(CircleShape):
+class Player(CircleShape, Sprite):
+    containers: tuple[Group, Group] = (Group(), Group())
+
     def __init__(self, x: int, y: int) -> None:
-        super().__init__(x, y, PLAYER_RADIUS)
+        CircleShape.__init__(self, x, y, PLAYER_RADIUS)
+        assert self.containers is not None
+        Sprite.__init__(self, *Player.containers)
         self.position: pygame.Vector2 = pygame.Vector2(x, y)
         self.rotation: int = 0
 
