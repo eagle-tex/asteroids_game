@@ -16,24 +16,34 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    player = Player(int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2))
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
+    # variable not used but player creation is necessary
+    initial_player = Player(int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2))
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        pygame.Surface.fill(screen, "black")
-        player.draw(screen)
-        pygame.display.flip()
-
-        player.update(dt)
 
         # pause the game for 1/60th of a second
         dt = clock.tick(60) / 1000
 
-    # print("Starting asteroids!")
-    # print(f"Screen width: {SCREEN_WIDTH}")
-    # print(f"Screen height: {SCREEN_HEIGHT}")
+        # update all game objects
+        for obj in updatable:
+            obj.update(dt)
+
+        # clear the screen
+        pygame.Surface.fill(screen, "black")
+
+        # draw game objects
+        for obj in drawable:
+            obj.draw(screen)
+
+        # show the frame
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
