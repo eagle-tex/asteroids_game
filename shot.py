@@ -5,12 +5,12 @@ from constants import SHOT_RADIUS
 
 
 class Shot(CircleShape, Sprite):
-    containers: tuple[Group, ...] | None = None
+    shots_containers: tuple[Group, ...] | None = None
 
     def __init__(self, x, y, radius):
         CircleShape.__init__(self, x, y, radius)
-        assert Shot.containers is not None  # Assert before using
-        Sprite.__init__(self, *Shot.containers)
+        assert Shot.shots_containers is not None  # Assert before using
+        Sprite.__init__(self, *Shot.shots_containers)
 
     def draw(self, screen):
         pygame.draw.circle(screen, "green", self.position, self.radius)

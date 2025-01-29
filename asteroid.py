@@ -1,7 +1,7 @@
 import random
 from typing import Any
 import pygame
-from pygame.sprite import Group, Sprite
+from pygame.sprite import Sprite
 from circleshape import CircleShape
 from constants import (
     ASTEROID_MIN_RADIUS,
