@@ -1,4 +1,5 @@
 import random
+from typing import Any
 import pygame
 from pygame.sprite import Group, Sprite
 from circleshape import CircleShape
@@ -11,12 +12,13 @@ from constants import (
 
 
 class Asteroid(CircleShape, Sprite):
-    containers: tuple[Group, Group, Group] | None = None
+    # containers: tuple[Group, Group] | None = None
+    asteroids_containers: tuple[Any, ...] | None = None
 
     def __init__(self, x, y, radius):
         CircleShape.__init__(self, x, y, radius)
-        assert Asteroid.containers is not None  # Assert before using
-        Sprite.__init__(self, *Asteroid.containers)
+        assert Asteroid.asteroids_containers is not None  # Assert before using
+        Sprite.__init__(self, *Asteroid.asteroids_containers)
 
     def draw(self, screen):
         pygame.draw.circle(screen, "red", self.position, self.radius, width=2)
